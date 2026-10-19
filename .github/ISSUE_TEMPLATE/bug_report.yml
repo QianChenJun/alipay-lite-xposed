@@ -1,0 +1,54 @@
+name: Bug report
+description: 报告模块在某个支付宝版本上失效、报错或行为异常
+title: "[bug] "
+labels: [ "bug" ]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提交前请先确认：
+
+        1. LSPosed 里模块已启用，作用域只有支付宝（静态作用域）
+        2. 已经强行停止支付宝再重新打开
+        3. `adb logcat -d | grep AlipayLite` 能看到 `called ... -> true` 或 `method missing`
+
+  - type: input
+    id: alipay-version
+    attributes:
+      label: 支付宝版本
+      placeholder: "10.8.76.8100 (versionCode 4070)"
+    validations:
+      required: true
+
+  - type: input
+    id: lsposed-version
+    attributes:
+      label: LSPosed 版本
+      placeholder: "2.2.0 (7854)"
+    validations:
+      required: true
+
+  - type: input
+    id: android-version
+    attributes:
+      label: Android / ROM
+      placeholder: "Android 16 / HyperOS 4"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 模块日志
+      description: "`adb logcat -d | grep AlipayLite` 的输出"
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: behavior
+    attributes:
+      label: 实际表现
+      description: 首页是否显示「已开启极速模式」、是否出现 method missing、是否影响其他自动化流程
+    validations:
+      required: true

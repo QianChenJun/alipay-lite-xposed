@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- 闪电。不再加外圈装饰：自适应图标的安全区只有中间 72dp，
+         半径 36 的圆环正好压在蒙版边缘，会被裁成一圈看起来像白边的残影。 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M61,24 L38,57 L52,57 L45,85 L70,49 L56,49 Z" />
+</vector>

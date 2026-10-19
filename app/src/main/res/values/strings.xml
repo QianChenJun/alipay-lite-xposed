@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">支付宝极速模式</string>
+    <string name="app_description">强制支付宝走官方低端机降级路径（含官方极速模式开关）。只调用支付宝自己的 API，不伪造机型/内存/温度。作用域锁定为支付宝，无法添加到其他应用。</string>
+</resources>
