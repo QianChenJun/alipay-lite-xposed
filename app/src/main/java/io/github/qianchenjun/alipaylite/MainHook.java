@@ -110,7 +110,7 @@ public final class MainHook extends XposedModule {
                     continue;
                 }
                 final AtomicBoolean logged = new AtomicBoolean();
-                hook(method).setId(className + "#" + methodName).intercept(chain -> {
+                hook(method).intercept(chain -> {
                     // 第一次被调用时记一行：这是“支付宝真的查询了这个开关”的直接证据。
                     if (logged.compareAndSet(false, true)) {
                         log(Log.INFO, TAG, "called " + className + "." + methodName + " -> " + value);
@@ -139,7 +139,7 @@ public final class MainHook extends XposedModule {
                     continue;
                 }
                 final AtomicBoolean logged = new AtomicBoolean();
-                hook(method).setId(CLS_GRADE_CONTROLLER + "#updateJiSuPatternSwitch").intercept(chain -> {
+                hook(method).intercept(chain -> {
                     Object original = chain.getArg(0);
                     if (logged.compareAndSet(false, true)) {
                         log(Log.INFO, TAG, "updateJiSuPatternSwitch(" + original + ") -> forced true");
@@ -160,7 +160,7 @@ public final class MainHook extends XposedModule {
         // 用 instanceof Application 过滤，只对支付宝的 Application 生效。
         try {
             Method attach = ContextWrapper.class.getDeclaredMethod("attachBaseContext", Context.class);
-            hook(attach).setId("ContextWrapper#attachBaseContext").intercept(chain -> {
+            hook(attach).intercept(chain -> {
                 // ContextWrapper 每个实例都会走这里；先判类型再 proceed，避免给非 Application 的包装类加无谓开销。
                 if (!(chain.getThisObject() instanceof Application)) {
                     return chain.proceed();
@@ -178,7 +178,7 @@ public final class MainHook extends XposedModule {
 
         try {
             Method onCreate = Application.class.getDeclaredMethod("onCreate");
-            hook(onCreate).setId("Application#onCreate").intercept(chain -> {
+            hook(onCreate).intercept(chain -> {
                 Object result = chain.proceed();
                 Object self = chain.getThisObject();
                 if (self instanceof Context) {

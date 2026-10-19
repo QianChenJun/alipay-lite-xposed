@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.2
+
+- 最低 API 降到 101：移除 API 102 独有的 `setId`，功能不变
+- 兼容更多报告 API 101 的现代 API 框架
+
 ## 1.0.1
 
 - 统一 Java namespace 为 `io.github.qianchenjun.alipaylite`
